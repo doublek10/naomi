@@ -1,0 +1,14 @@
+# Force HTTPS and lock this directory down to just the bridge endpoint.
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Never serve config.php or schema.sql directly, even if someone requests
+# them by name.
+<FilesMatch "^(config\.php|schema\.sql|\.env)$">
+  Require all denied
+</FilesMatch>
+
+# Optional very basic per-IP throttle if mod_qos / mod_evasive isn't
+# available on your cPanel plan — the file-based limiter in database.php
+# already does this in application code, this is a second layer.

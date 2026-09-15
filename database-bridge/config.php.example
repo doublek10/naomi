@@ -1,0 +1,22 @@
+<?php
+/**
+ * config.php
+ *
+ * COPY this file to config.php (same directory) and fill in real values.
+ * Better still: place config.php one directory ABOVE public_html so it is
+ * not web-accessible at all, and change the require_once path in
+ * database.php to match, e.g. require_once __DIR__ . '/../config.php';
+ *
+ * NEVER commit the real config.php to version control.
+ */
+
+declare(strict_types=1);
+
+const DB_SERVER = 'localhost';
+const DB_USER   = 'your_cpanel_db_user';
+const DB_PASS   = 'your_cpanel_db_password';
+const DB_NAME   = 'your_cpanel_db_name';
+
+// Long random string — generate with: openssl rand -hex 32
+// Must match DB_BRIDGE_API_KEY in the Next.js app's environment variables.
+const API_KEY = 'CHANGE_ME_LONG_RANDOM_SECRET';
